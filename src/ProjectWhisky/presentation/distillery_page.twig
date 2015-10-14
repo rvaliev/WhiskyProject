@@ -1,0 +1,89 @@
+    {% extends "default_template.twig" %}
+        {% block title %}
+            {{ distillery.name }}
+        {% endblock %}
+
+        {% block content %}
+            <header id="header_banner" class="distillery_header">
+            </header>
+            <div id="distillery_page">
+                <div id="content_container" class="clearfix flex_parent">
+                    <aside id="whisky_sidebar" class="left">
+                        
+                        <div id="information">
+                            <div>
+                                <h3>Address</h3>
+                                <p>{{ distillery.address }}</p>
+                            </div>
+                            <div>
+                                <h3>City</h3>
+                                <p>{{ distillery.city }}</p>
+                            </div>
+                            <div>
+                                <h3>Country</h3>
+                                <p>{{ distillery.country }}</p>
+                            </div>
+                        </div>
+
+                    </aside>
+                    <div id="contentbox">
+
+                        <iframe width='100%' height='100%' frameborder='0' scrolling='no' src='https://maps.google.com/maps?&amp;q="+ {{ distillery.name}} +"+Distillery&amp;output=embed'></iframe>
+
+                        <h2 class="distillery_name">{{ distillery.name }}</h2>
+
+                        <table class="whisky_list" border="1">
+                            <tr>
+                                <th>Whisky Name</th>
+                                <th>Age</th>
+                                <th>Alcohol</th>
+                                <th>Barrel</th>
+                                <th>Price</th>
+                            </tr>
+<!-- BEGIN WHISKIES LOOP -->                                                        
+                            {% for whisky in whiskies %}
+                                <tr>
+                                    <td><a href="whisky.php?id={{whisky.0}}">{{whisky.1}}</a></td>
+                                    <td>{{whisky.2}}</td>
+                                    <td>{{whisky.3}}</td>
+                                    <td>{{whisky.4}}</td>
+                                    <td>€{{whisky.5}}</td>
+                                </tr>
+                            {% endfor %}    
+                            
+                            <!--
+                            <tr>
+                                <th>Whisky Name</th>
+                                <th>Age</th>
+                                <th>Alcohol</th>
+                                <th>Barrel</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr>
+                                <td><a href="whisky.php?id={{ whisky.id }}">Naam</a></td>
+                                <td>24</td>
+                                <td>100%</td>
+                                <td>Oak</td>
+                                <td>€ 123</td>
+                            </tr>
+                            <tr>
+                                <td><a href="whisky.php?id={{ whisky.id }}">Naam</a></td>
+                                <td>24</td>
+                                <td>100%</td>
+                                <td>Oak</td>
+                                <td>€ 123</td>
+                            </tr>
+                            <tr>
+                                <td><a href="whisky.php?id={{ whisky.id }}">Naam</a></td>
+                                <td>24</td>
+                                <td>100%</td>
+                                <td>Oak</td>
+                                <td>€ 123</td>
+                            </tr>
+                            -->
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        {% endblock %}

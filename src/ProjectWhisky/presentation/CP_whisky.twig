@@ -1,0 +1,59 @@
+{% extends "cpanel_template.twig" %}
+{% set activetab = 'whiskies' %}
+{% block title %} Whiskies  {% endblock %}
+{% block content %}
+
+            <header id="header_banner" class="whisky_header">
+                <div id="header_quote"><p>Manage Whiskies</p></div>
+            </header>
+            <div id="content_container">
+                {% if msg == "error" %}
+                <div id="notifier" class="red shadow">
+                    <p><span class="fa fa-exclamation-circle"></span>
+                        All fields are required.</p>
+                </div>
+                {% elseif msg == "success_deleted" %}
+                <div id="notifier" class="green shadow">
+                    <p><span class="fa fa-check-circle"></span>
+                        Whisky successfully deleted.</p>
+                </div>
+                {% endif %}
+                <div id="controller" class="shadow">
+                    <form class="center cpanel_form" action="cp_whisky.php" method="get"><h2>Search Whiskies</h2>
+
+                        <input type="text" name="whiskyname" value="{{searchInput is defined ? searchInput : ""}}" id="search_whiskyname" placeholder="Whisky Name">
+                        <input class="btn btn-primary" type="submit" value="Search">
+
+                    </form>
+
+                    <a href="CP_whisky_add.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add a Whisky</a>
+                    
+                    {% if searchInput is defined and not empty %}<br>
+                        <a href="CP_whisky.php" class="btn btn-primary">Show all</a>
+                    {% endif %}
+
+                    <table class="cpanel_table">
+
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Age</th>
+                            <th>Created</th>
+                            <th>Full Edit</th>
+                        </tr>
+                    {% for whisky in whiskies %}
+                        <tr>
+                            <td class="text_center"><img alt="picture of {{ whisky.name }}" src="src/ProjectWhisky/presentation/img/{{ whisky.imagePath }}"></td>
+                            <td><a target="_blanc" href="whisky.php?id={{ whisky.id }}">{{ whisky.name }}</a></td>
+                            <td class="text_right">&euro; {{ whisky.price }}</td>
+                            <td class="text_right">{{ whisky.age }}</td>
+                            <td class="text_center">{{ whisky.creationDate }}</td>
+                            <td class="text_center"><a href="CP_whisky_edit.php?id={{ whisky.id }}">Edit</a></td>
+                        </tr>
+                    {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+{% endblock %}    

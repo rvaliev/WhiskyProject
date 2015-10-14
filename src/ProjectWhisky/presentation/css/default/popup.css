@@ -1,0 +1,150 @@
+
+/*
+* Color of error messages during the registration or authorization
+*/
+.error_reporting, .error_reporting_registration{
+    visibility: hidden;
+    color: #ff0000;
+}
+
+/*
+* Color of success message on the end of registration or authorization
+*/
+.success{
+    color: #00c200;
+}
+
+.error_reporting span{
+    text-align: center;
+    /*float: left;*/
+    margin-top: 1rem;
+}
+
+
+/******
+* TEMPORARY profile css
+*/
+
+#passwordBlock{
+    padding: 1rem 0;
+    display: none;
+}
+#passwordBlock h3{
+    margin-top: 1rem;
+}
+
+.closeChangePass{
+    display: none;
+}
+
+
+/**
+* Roger's styling here
+**/
+
+.lightbox-panel-register, .lightbox-panel-login{
+    display: none;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+}
+
+.modal{
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+#profile_edit_form form, .lightbox-panel-register form, .lightbox-panel-login form{
+    margin: auto auto;
+    width: 30em;
+    color: black;
+    background: #FFF7E7;
+    padding: 4em;
+}
+
+#profile_edit_form input, .lightbox-panel-register input, .lightbox-panel-login input{
+    display: list-item;
+    list-style: none;
+    padding: 0.4em 0.8em 0.5em;
+    background-color: #333;
+    width: 100%;
+    border: none;
+    margin: 0.5em auto 1em;
+    color: #FFB739;
+}
+
+#profile_edit_form input[type="submit"],
+ .lightbox-panel-register input[type="submit"],
+ .lightbox-panel-login input[type="submit"],
+ #search_whisky_form input[type="submit"]{
+    padding: 0.4em 0.8em 0.5em;
+    background: none;
+    border: 0.3em solid black;
+    color: black;
+    font-family: 'open_sansbold';
+
+}
+#profile_edit_form input[type="submit"]:hover,
+ .lightbox-panel-register input[type="submit"]:hover,
+ .lightbox-panel-login input[type="submit"]:hover,
+ #search_whisky_form input[type="submit"]:hover{
+    background-color: #FFB739;
+}
+
+#profile_edit_form input[disabled],
+ .lightbox-panel-register input[disabled],
+ .lightbox-panel-login input[disabled]{
+    background-color: darkgray;
+    border: 0.3em solid gray;
+    color: white;
+    cursor: not-allowed;
+}
+#profile_edit_form input[disabled]:hover,
+ .lightbox-panel-register input[disabled]:hover,
+ .lightbox-panel-login input[disabled]:hover{
+    background-color: darkgray;
+    border: 0.3em solid gray;
+}
+
+.lightbox-panel-login h3, .lightbox-panel-register h3{
+    font-size: 3em;
+}
+
+.close{
+    position: relative;
+    margin: 0 auto;
+    margin-top: 1em;
+    width: 100%;
+}
+.close a{
+    color: #FFBA39;
+    display: block;
+    margin: 1em;
+}
+
+
+/**
+* Password styling:
+**/
+
+#passwordBlock{
+    display: none;
+}
+
+.dontChangePass{
+    display: none;
+}

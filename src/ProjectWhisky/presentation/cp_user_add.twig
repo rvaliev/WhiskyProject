@@ -1,0 +1,120 @@
+{% extends "cpanel_template.twig" %}
+{% set activetab = 'users' %}
+{% block title %} add user  {% endblock %}
+{% block content %}
+
+<header id="header_banner" class="users_header">
+	<div id="header_quote"><p>Add new user</p></div>
+</header>
+
+<div id="content_container">
+    {% if msg == "missing" %}
+        <div id="notifier" class="yellow shadow">
+            <p><span class="fa fa-exclamation-circle"></span>
+                Username, firstname, lastname and e-mail are required.</p>
+        </div>
+    {% elseif msg == "success" %}
+        <div id="notifier" class="green shadow">
+            <p><span class="fa fa-check-circle"></span>
+                User successfully added.</p>
+        </div>
+    {% elseif msg == "wrong_image" %}
+        <div id="notifier" class="red shadow">
+            <p><span class="fa fa-times-circle"></span>
+                Only .png, .jpg, .jpeg and .gif files are allowed.</p>
+        </div>
+    {% elseif msg == "wrong_image_size" %}
+        <div id="notifier" class="red shadow">
+            <p><span class="fa fa-times-circle"></span>
+                Allowed file size is 2MB</p>
+        </div>
+    {% elseif msg == "username_exists" %}
+        <div id="notifier" class="red shadow">
+            <p><span class="fa fa-times-circle"></span>
+                This username already exists.</p>
+        </div>
+    {% elseif msg == "email_exists" %}
+        <div id="notifier" class="red shadow">
+            <p><span class="fa fa-times-circle"></span>
+                User with this e-mail already exists.</p>
+        </div>
+    {% elseif msg == "wrong_email_pattern" %}
+        <div id="notifier" class="red shadow">
+            <p><span class="fa fa-times-circle"></span>
+                E-mail should look like this: mail@mail.com</p>
+        </div>
+    {% elseif msg == "wrong_name_pattern" %}
+        <div id="notifier" class="red shadow">
+            <p><span class="fa fa-times-circle"></span>
+                Firstname and lastname can contain alphabetic letters, or this symbols only: '`-éèçàëêe and spaces</p>
+        </div>
+    {% elseif msg == "wrong_password_pattern" %}
+        <div id="notifier" class="red shadow">
+            <p><span class="fa fa-times-circle"></span>
+                Password must contain min. 8 characters, min. 1 capital letter and min. 1 number. </p>
+        </div>
+    {% elseif msg == "wrong_username_pattern" %}
+        <div id="notifier" class="red shadow">
+            <p><span class="fa fa-times-circle"></span>
+                Username can contain alphanumeric symbols only</p>
+        </div>
+    {% elseif msg == "error" %}
+        <div id="notifier" class="red shadow">
+            <p><span class="fa fa-times-circle"></span>
+                Something is wrong</p>
+        </div>
+    {% elseif msg == "info" %}
+        <div id="notifier" class="blue shadow">
+            <p><span class="fa fa-info-circle"></span>
+                "This is info, insert correct message here!"</p>
+        </div>
+
+    {% endif %}
+
+    <div id="controller" class="shadow">
+    	<form class="cp_subform" action="cp_user_add.php" method="post" enctype="multipart/form-data">
+            <div class="flex_parent">
+                <div class="flex_child">
+
+                    <h3>E-mail:</h3>
+                    <input type="text" name="userEmail" placeholder="E-mail" value="{{ savedData.email }}"/>
+                    <h3>Username:</h3>
+                    <input type="text" name="userUsername" placeholder="Username" value="{{ savedData.username }}"/>
+                    <h3>Password:</h3>
+                    <input type="text" name="userPassword" placeholder="Password" value="{{ savedData.password }}"/>
+                    <h3>Firstname:</h3>
+                    <input type="text" name="userFirstName" placeholder="Firstname" value="{{ savedData.firstname }}"/>
+                    <h3>Lastname:</h3>
+                    <input type="text" name="userLastName" placeholder="Lastname" value="{{ savedData.lastname }}"/>
+
+                    <div class="">
+                        {% if savedData.admin == true %}
+                            <h3>Admin: <input type="checkbox" name="userAdmin" checked></h3>
+                        {% else %}
+                            <h3>Admin: <input type="checkbox" name="userAdmin" ></h3>
+                        {% endif %}
+
+                        {% if savedData.blocked == true %}
+                            <h3>Blocked: <input type="checkbox" name="userBlocked" checked></h3>
+                        {% else %}
+                            <h3>Blocked: <input type="checkbox" name="userBlocked" ></h3>
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="flex_child text_center">
+                    <h3>Profile Picture:</h3>
+                    {#<img src="src/ProjectWhisky/presentation/userimages/default.jpg" alt="Profile Picture"/>#}
+                    <div class="fileUpload btn btn-primary center">
+                        <span class="fa fa-plus"></span> <span> Add Picture</span>
+                        <input id="imgUploader" type="file" class="upload" name="userImage">
+                        <input class="btn btn-primary text_left" id="uploadFile" placeholder="No File Selected" disabled="disabled">
+                    </div>
+                </div>
+            </div>
+            <br>
+    		<input class="btn btn-primary" type="submit" value="Create User"/>
+    	</form>
+        </div>
+</div>
+{% endblock %} 

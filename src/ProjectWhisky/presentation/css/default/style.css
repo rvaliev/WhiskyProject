@@ -1,0 +1,1046 @@
+/* Default Website Stylesheet */
+
+/* Author: Roger Antonio Vandekerckhove -- www.rogerantonio.com ; */
+
+/* CSS Resets */
+
+
+
+/* Importing boilerplate */
+@import url(../main.css);
+
+/* @Font */
+
+@font-face {
+    font-family: 'goudy';
+    src: url('../fonts/goudy_bookletter_1911.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'trashhand';
+    src: url('../fonts/TrashHand.ttf');
+    src: url('../fonts/TrashHand.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('../fonts/opensans-bold-webfont.eot');
+    src: url('../fonts/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensans-bold-webfont.woff2') format('woff2'),
+         url('../fonts/opensans-bold-webfont.woff') format('woff'),
+         url('../fonts/opensans-bold-webfont.ttf') format('truetype'),
+         url('../fonts/opensans-bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sanslight';
+    src: url('../fonts/opensans-light-webfont.eot');
+    src: url('../fonts/opensans-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensans-light-webfont.woff2') format('woff2'),
+         url('../fonts/opensans-light-webfont.woff') format('woff'),
+         url('../fonts/opensans-light-webfont.ttf') format('truetype'),
+         url('../fonts/opensans-light-webfont.svg#open_sanslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sansregular';
+    src: url('../fonts/opensans-regular-webfont.eot');
+    src: url('../fonts/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/opensans-regular-webfont.woff2') format('woff2'),
+         url('../fonts/opensans-regular-webfont.woff') format('woff'),
+         url('../fonts/opensans-regular-webfont.ttf') format('truetype'),
+         url('../fonts/opensans-regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* CSS Resets */
+
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 62.5%;
+    height: 100%;
+}
+
+ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+
+/* Commence Styling Rules */
+
+        
+body{
+    font-size: 1.4em;
+    font-family: 'open_sansregular';
+    background: #7F786B;
+}
+
+h1{
+    font-family: 'open_sanslight';
+}
+.right{
+    float: right;
+}
+.left{
+    float: left;
+}
+.top{
+    top: 0;
+    margin-top: 0;
+}
+.bottom{
+    bottom: 0;
+    margin-bottom: 0;
+    height: 100%;
+}
+.center{
+    margin-left: auto;
+    margin-right: auto;
+}
+.clearfix{
+    clear: both;
+}
+.clearfix:after { 
+    content: ""; 
+    visibility: hidden; 
+    display: block; 
+    height: 0; 
+    clear: both;
+}
+.fullwidth{
+    width: 100%;
+}
+
+.navbutton{
+    display: block;
+}
+
+footer{
+    display: block;
+    padding: 0.8em 0 1em 0;
+    background-color: black;
+    color: white;
+    border-bottom: 3px solid #CC952D;
+}
+
+#notifier{
+    margin: 1em auto 1.5em;
+    width: 100%;
+    max-width: 960px;
+    padding: 2em 6em 2em 3em;
+    color: white;
+}
+.yellow{
+    background-color: sandybrown !important;
+    outline:0.2em solid sandybrown;
+    border:0.2em solid #FFF;
+    /*<span class="fa fa-exclamation-circle"></span>*/
+}
+.red{
+    background-color: salmon !important;
+    outline:0.2em solid salmon;
+    border:0.2em solid #FFF;
+    /*<span class="fa fa-times-circle"></span>*/
+}
+.green{
+    background-color: limegreen !important;
+    outline:0.2em solid limegreen;
+    border:0.2em solid #FFF;
+    /*<span class="fa fa-check-circle"></span>*/
+}
+.blue{
+    background-color: deepskyblue !important;
+    outline:0.2em solid deepskyblue;
+    border:0.2em solid #FFF;
+    /*<span class="fa fa-info-circle"></span>*/
+}
+
+input.yellow{
+    background-color: sandybrown !important;
+    outline: none;
+    box-shadow: inset 0 0 0 0.2em #413001;
+    color: #413001 !important;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    /*<span class="fa fa-exclamation-circle"></span>*/
+}
+input.red{
+    background-color: salmon !important;
+    outline: none;
+    box-shadow: inset 0 0 0 0.2em #400401;
+    color: #400401 !important;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    /*<span class="fa fa-times-circle"></span>*/
+}
+input.green{
+    background-color: limegreen !important;
+    outline: none;
+    box-shadow: inset 0 0 0 0.2em #06441d;
+    color: #06441d !important;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    /*<span class="fa fa-check-circle"></span>*/
+}
+input.blue{
+    background-color: deepskyblue !important;
+    outline: none;
+    box-shadow: inset 0 0 0 0.2em #013045;
+    color: #013045 !important;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+    /*<span class="fa fa-info-circle"></span>*/
+}
+.no_border{
+  border: none;
+  outline: none;
+}
+
+#notifier span.fa{
+    margin-right: 1em;
+    margin-top: -0.3em;
+    font-size: 3em;
+    float: left;
+}
+
+.no_bg{
+    background: none !important;
+    background-color: none !important;
+}
+
+.no_padding{
+    padding: 0 !important;
+}
+
+.flex_parent{
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+#navbar{
+    padding: 0.8em 0 1em 0;
+    background-color: black;
+    color: white;
+    border-bottom: 3px solid #FFBA39;
+
+}
+
+.navbutton a, #logo a{
+    height: 16px;
+    display: inline-block;
+    margin-right: 1.8em;
+    margin-left: 0.4em;
+    color: white;
+    line-height: 1.2em;
+    font-family: 'open_sansbold';
+}
+
+.navbutton a:hover, #logo a:hover{
+    color: #FFBA39;
+}
+
+#logo{
+    height: 16px;
+    padding-left: 17px;
+
+    background: url("../../logo/logo_white_big.png") left center;
+    background-size: 16px;
+    background-repeat: no-repeat;
+    font-family: 'open_sansbold';
+}
+#header_logo{
+    height: 14em;
+    width: 14em;
+    background: url("../../logo/logo_white_big.png") center center;
+    background-size: 14em;
+    background-repeat: no-repeat;
+    position: absolute;   
+    top: -1em;
+    left: -1em;
+}
+
+/* Desktop
+@media (min-width: 769px){*/
+
+    .container{
+        width: 90%;
+        max-width: 1080px;
+        margin: 4em auto;
+    }
+    .containershadow{
+        position: relative;
+    }
+    .containershadow:before, .containershadow:after{
+        z-index: -1;
+        position: absolute;
+        content: "";
+        bottom: 15px;
+        left: 10px;
+        width: 50%;
+        top: 98%;
+        /* max-width: 300px; */
+        max-height: 3em;
+        background: rgba(0,0,0,0.5);
+        -webkit-box-shadow: 0 15px 10px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0 15px 10px rgba(0,0,0,0.5);
+        box-shadow: 0 15px 10px rgba(0,0,0,0.5);
+        -webkit-transform: rotate(-3deg);
+        -moz-transform: rotate(-3deg);
+        -o-transform: rotate(-3deg);
+        -ms-transform: rotate(-3deg);
+        transform: rotate(-3deg);
+    }
+
+    .containershadow:after{
+        -webkit-transform: rotate(3deg);
+        -moz-transform: rotate(3deg);
+        -o-transform: rotate(3deg);
+        -ms-transform: rotate(3deg);
+        transform: rotate(3deg);
+        right: 10px;
+        left: auto;
+    }
+
+    header#header_banner{
+        background-image: url("../../presentation/interface/banners/cinemagraph1.gif");
+        background-repeat: no-repeat;
+        background-position: center -4em;
+        background-size: cover;
+        height: 30em;
+        border-bottom: 3px solid #FFBA39;
+        color: white;
+    }
+
+    header #header_quote{
+        font-family: 'goudy';
+        font-size: 2em;
+        padding: 1em 0.5em;
+    }
+
+    header #header_quote p{
+        padding: 0.5em 1em;
+        display: inline-block;
+        -webkit-transform: rotate(-4deg);
+        -moz-transform: rotate(-4deg);
+        -o-transform: rotate(-4deg);
+        -ms-transform: rotate(-4deg);
+        transform: rotate(-4deg);
+    }
+
+    #content_container{
+        background-color: #FFF7E7;
+        padding: 2em 3em;
+    }
+
+    .whisky_view ul{
+        width: 100%;
+        -ms-box-orient: horizontal;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: flex;
+        margin: 2em auto 2em auto;
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-justify-content: center;
+        justify-content: center;
+    }
+    .whisky_view ul li{
+        margin: 0 auto 2em auto;
+        width: 21.9%;
+    }
+    .whisky_view ul li:nth-child(4n+4){
+        /*margin-right: 0;*/
+        display: list-item;
+    }
+    .whisky_view ul li:nth-child(4n+1){
+        /*margin-left: 0;*/
+    }
+    .whisky_view ul li:last-child{
+        /*margin-right: 0;*/
+        float: left;
+    }
+
+    .whisky_box{
+        width: 100%;
+        display: block;
+        background-color: white;
+        -webkit-box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+        -moz-box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .whisky_box img{
+        max-height: 13.5em;
+        max-width: 100%;
+        margin: 1em 0;
+    }
+
+    .whisky_box_name{
+        background-color: black;
+        padding: 1em;
+        color: white;
+    }
+
+    .whisky_box:hover{
+        -webkit-box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+        box-shadow: 0 1px 10px rgba(0,0,0,0.5);
+    }
+    .whisky_box:hover .whisky_box_name{
+        color: #FFBA39;
+    }
+
+    header#header_banner.whisky_header{ /* shrink mainpage header */
+        height: 15em;
+        background-position: center -100px;
+        background-image: url("../../presentation/interface/banners/case.jpg");
+    }
+
+    header#header_banner.search_header{ /* shrink mainpage header */
+        height: 15em;
+        background-position: center -160px;
+        background-image: url("../../presentation/interface/banners/header.jpg");
+    }
+
+    header#header_banner.profile_header{ /* shrink mainpage header */
+        height: 15em;
+        display: none;
+        background-position: left -195px;
+        background-image: url("../../presentation/interface/banners/profile.jpg");
+    }
+    header#header_banner.distillery_header{ /* shrink mainpage header */
+        height: 15em;
+        background-position: center -240px;
+        background-image: url("../../presentation/interface/banners/distillery.jpg");
+    }
+
+    .rating_box {
+        padding: 1em 2em;
+        color: #fff;
+        background-color: #333;
+        -webkit-flex: 1;
+        flex: 1;
+        position: absolute;
+        right: 0;
+        left: 25em;
+        max-height: 20em;
+    }
+
+    .rating_box > h2{
+        padding: 1em;
+        font-size: 1.6em;
+        border-bottom: 0.15em solid #FFBA39;
+        color: #FFBA39;
+        text-shadow: 0px 1px 0px rgba(255,186,57,0.3);
+        margin-bottom: 0.8em;
+    }
+
+    .rating_box #bars{
+        margin-left: 4.5em;
+        margin-right: 0.5em;
+        width: auto;
+    }
+
+    .rating_base {
+        background: #171717;
+        width: 100%;
+        height: 0.5em;
+    }
+
+    .rating{
+        background: #FFBA39;
+        width: 100%;
+        height: 0.5em;
+        position: relative;
+        top: -0.5em;
+        z-index: 0;
+        margin-bottom: 0.5em;
+    }
+
+    #whisky_page aside img, #distillery_page aside img{
+        max-height: 20em;
+        margin: 0 auto;
+    }
+
+    #whisky_sidebar{
+        background-color: #333;
+        width: 25em;
+        text-align: center;
+        color: white;
+    }
+
+    .whisky_image_container{
+        background-color: white;
+        width: 100%;
+        margin: 0;
+        -webkit-border-radius: 0px 0px 1em 0px;
+        -moz-border-radius: 0px 0px 1em 0px;
+        border-radius: 0px 0px 1em 0px;
+    }
+
+    #whisky_page #content_container, #distillery_page #content_container{
+        padding: 0;
+        width: 100%;
+        background-color: #333;
+
+    }
+
+    .user_comment{
+        -webkit-flex: 3;
+        flex: 3;
+        width: 100%;
+        min-width: 15em;
+        padding-right: 1.5em;
+    }
+    .comment_pic{
+        -webkit-flex:1;
+        flex:1;
+    }
+
+    #contentbox{
+        -webkit-flex: 1;
+        flex: 1;
+        margin-top: 20em;
+        background-color: #FFF7E7;
+        padding-top: 0.2em;
+
+        -webkit-border-radius: 1em 0px 0px 0px;
+        -moz-border-radius: 1em 0px 0px 0px;
+        border-radius: 1em 0px 0px 0px;
+    }
+    #distillery_page #contentbox {
+        margin:0;
+        padding-top:0;
+        -webkit-border-radius: 0em 0px 0px 0px;
+        -moz-border-radius: 0em 0px 0px 0px;
+        border-radius: 0em 0px 0px 0px;
+    }
+
+    #distillery_page h3{
+        text-align: left;
+        display: inline-block;
+        margin: 0.4em 0em 0em 0em;
+        width: 100%;
+        font-family: 'open_sansbold';        
+    }
+
+    .distillery_name{
+        padding: 1em 1em 0.7em 1em;
+        margin: 1em;
+        font-size: 2em;
+        border-bottom: 0.15em solid black;
+        text-shadow: 0px 1px 0px rgba(255,186,57,0.3);
+        margin-bottom: 0.8em;
+        font-family: 'open_sansbold';
+    }
+
+    #review{
+        width: 100%;
+    }
+
+    #review h2, #comments h2{
+        margin-top: 1em;
+        padding: 0.5em 2em 1.5em 2em;
+        font-size: 2em;
+    }
+
+    #distillery_page h2{
+        margin-top: 0em;
+    }
+
+    #distillery_page .whisky_list{
+        margin:0 auto 2em;
+        width: 40em;
+        border: 1px solid black;
+    }
+
+    .whisky_list th{
+        color: #FFBA39;
+        background-color: black;
+        font-family: 'open_sansbold';
+        padding:0.5em;
+    }
+
+    .whisky_list td{
+        padding:0.2em 0.5em;
+    }
+
+    .whisky_list td a{
+        padding:0.2em 0.5em;
+        width: 100%;
+        display: block;
+        color: #FFBA39;
+    }
+
+    .whisky_list td a:hover{
+        text-decoration: underline;
+    }
+    .whisky_list tr:nth-child(even){
+        background-color: #FFFBF4;
+    }
+    .whisky_list tr:hover{
+        background-color: white;
+    }
+
+    #description_header ~ .review_box h3{
+        text-align: right;
+        display: inline-block;
+        margin: 0.4em 1em 0em 1em;
+        width: 8em;
+        font-family: 'open_sansbold';
+    }
+
+    #description_header ~ .review_box p{
+        display: block;
+        padding: 1.6em 2.5em 1.5em 1em;
+        border-left: 0.1em solid black;
+        margin-left: 12em;
+        text-align: justify;
+        margin-top: -3em;
+    }
+    #review_header + .review_box p{
+        display: block;
+        padding: 1.6em 2.5em 1.5em 5.5em;
+        margin-left: 0;
+        border-left: 0;
+        text-align: justify;
+    }
+
+    h2#review_header, h2#review_header + .review_box{
+        background-color: white;
+    }
+
+    #information{
+        text-align: left;
+        padding: 1.5em;
+        margin-top: 2em;
+    }
+
+    #information > div{
+        margin:0em 2em 2em 2em;
+    }
+
+    #information div > p{
+        margin-left: 1em;
+        margin-top: 0.5em;
+        color: #AAA;
+    }
+
+    #information a{
+        color: #FFBA39;
+    }
+    #information a:hover{
+        text-decoration: underline;
+    }
+
+    #comments{
+        width: 100%;
+    }
+
+    #comments h2{
+        padding-bottom: 1em;
+    }
+
+    .comment{
+        padding: 1.5em 0;
+        border-top: 1px dashed lightgray;
+    }
+
+    .messageBlock, .editorReplacement{ 
+        margin: 1em;
+        padding: 1em 1.2em;
+        color: white;
+    }
+
+    .editorReplacement a{
+        color:rgb(110, 110, 110);
+    }
+    .editorReplacement a:hover{
+        color:darkblue;
+        text-decoration: underline;
+    }
+
+    .flex5{
+        -webkit-flex:5;
+        flex:5;
+    }
+
+    #comments .comment:nth-child(even){
+        background-color: #FFFBF4;
+    }
+
+    .comment_controls, .comment_controls a, .comment_controls form{
+        display: inline-table;
+        margin-right: 0.5em;
+    }
+    .comment_controls, .comment_controls a, .comment_controls form span{
+        color: gray;
+    }
+
+    .comment_controls{
+        margin-left: 2em;
+    }
+    .comment_controls a:hover, .comment_controls form:hover span{
+        color: #FFBA39;
+    }
+
+    .comment_pic{
+        max-width: 10em;
+        max-height: 10em;
+        margin: 0.5em 2em 1em;
+        /*-webkit-flex:1;
+        flex:1;*/
+    }
+    .comment_pic img{
+        max-width: 100%;
+        max-height: 10em;
+        height: auto;
+    }
+
+    .user_comment{
+        color: #777;
+        font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    }
+    .user_comment h3{
+        color: black;
+    }
+
+    .user_comment strong{
+        font-weight: bold;
+    }
+
+    .user_comment em{
+        font-style: italic;
+    }
+
+    .user_comment a{
+        color: black;
+    }
+
+    .user_comment a:hover{
+        text-decoration: underline;
+    }
+
+    #comment_submit{
+        margin: 1em;
+        float: right;
+    }
+
+    .comment_timestamp{
+        width: 100%;
+        font-family: "open_sansregular";
+    }
+
+    .comment_timestamp p{
+        margin-right: 2em;
+        color: gray;
+        margin-top: 0.2em;
+        float: right;
+    }
+
+    .profile_image_displayer{
+        -webkit-flex: 1;
+        flex: 1;
+        text-align: center;
+    }
+    .profile_image_displayer h3{
+        text-align: left;
+    }
+
+    .profile_edit_info{
+        margin-left: 2em;
+        -webkit-flex: 2;
+        flex: 2;
+    }
+
+    .change_password_box{
+        -webkit-flex: 2;
+        flex: 2;
+        margin: 1em 0 1em 35.5%;
+        position: inherit;
+    }
+
+    .change_password_box a{
+        color: #FFBA39;
+    }
+
+    .profile_image_displayer input[type="file"]{
+        -moz-opacity: 0;
+        filter:alpha(opacity: 0);
+        opacity: 0;
+        position: relative;
+        top: -3.3em;
+        cursor: pointer;
+    }
+
+    .profile_image_displayer img{
+        max-height: 15em;
+        max-width: 322px;
+        margin: 0.5em auto 0em;
+    }
+
+    .profile_edit_info input{
+        margin-top: -1em;
+    }
+
+/* FUCKIING KNOP */
+    
+    input[type="button"], input[type="button"]::-webkit-file-upload-button, input[type="file"]::-webkit-file-upload-button{
+        display: none !important; /* Removing the annoying AGENT USER STYLE that made "cursor:pointer;" fuck up!*/
+    }
+
+    .fileUpload*, .fileRemover*, .commentRemover*{
+        cursor: pointer;
+    }
+
+    .fileUpload{
+        position: relative;
+        top: -2.3em;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .fileRemover{
+        position: relative;
+        overflow: hidden;
+        margin: 0 auto;
+        top: 2em;
+    }
+
+    .commentRemover{
+        position: relative;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    #profile_fileRemover_form{
+        position: absolute;
+        width: 30%;
+    }
+
+    #profile_edit_form .fileUpload input.upload{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .fileRemover input.remover{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    .commentRemover input.remover{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+    #imgUploader.upload{
+        margin: 0;
+    }
+
+    #profile_edit_form input#uploadFile{
+        margin-top: -1em;
+        display: none;
+    }
+
+    .btn{   
+        display: table;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border: none;
+    }
+    .btn-primary{
+        color: #FFBA39;
+        background-color: rgba(0,0,0,0.5);
+    }
+    .btn-primary:hover{
+        background-color: rgba(0,0,0,1);
+    }
+
+    .sliders_block{
+        -webkit-flex: 1;
+        flex: 1;
+    }
+    .sliders_block h3{
+        margin: 1em 0 0.4em;
+    }
+
+    .sliders_block h4{
+        width: 38%;
+        min-width: 9em;
+        float: left;
+        text-align: right;
+        padding-right: 1.5em;
+    }
+    
+    #search_whisky_form{
+        border-bottom: 1px dashed rgba(0,0,0,0.2);
+        padding-bottom: 1.5em;
+    }
+
+    ::-webkit-input-placeholder { /* WebKit browsers */
+        color: #7F5B1C;
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #7F5B1C;
+        opacity: 1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #7F5B1C;
+        opacity: 1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: #7F5B1C;
+    }
+
+/*
+}
+
+/* Portrait Tablet 
+@media (min-width: 481px) and (max-width: 768px){
+
+    #navbar{
+        padding: 0.8em 0 1em 0;
+        background-color: black;
+        color: white;
+        border-bottom: 3px solid #CC952D;
+    }
+
+    .navbutton a{
+        height: 14px;
+        display: inline-block;
+        margin-right: 1.6em;
+        margin-left: 0.3em;
+        color: white;
+        line-height: 1.2em;
+        font-family: 'open_sansbold';
+    }
+    .navbutton a:hover{
+        color: #CC952D;
+    }
+
+    .container{
+        width: 100%;
+        margin: 0;
+    }
+
+    header#header_banner{
+        background-image: url("../../presentation/interface/banners/header.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        height: 30em;
+        border-bottom: 3px solid #CC952D;
+        color: white;
+    }
+
+    #content_container{
+        background-color: #FFF7E7;
+        padding: 2.5em 2em;
+    }
+
+    .whisky_view ul{
+        width: 100%;
+        padding:0;
+    }
+    .whisky_view ul li{
+        margin: 0 0 1em 0;
+        width: 100%;
+        display: list-item;
+        border-bottom:0.2em solid #CC952D;
+        -webkit-box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+        -moz-box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+    }
+
+    .whisky_box{
+        width: 100%;
+        display: block;
+        background-color: white;
+        padding: 0;
+    }
+
+    .whisky_box img{
+        height: auto;
+        max-height: 8em;
+    }
+
+    .whisky_box_name{
+        text-align: center;
+        display: inline-block;
+    }
+
+}
+
+/* Landscape smart phone 
+@media (min-width: 321px) and (max-width: 480px){
+
+}
+
+/* Portrait smart phone 
+@media (max-width: 320px){
+
+}
+*/
+
+
+
+

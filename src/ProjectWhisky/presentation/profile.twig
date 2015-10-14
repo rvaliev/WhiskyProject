@@ -1,0 +1,158 @@
+    {% extends "default_template.twig" %}
+        {% block title %}
+            Profile
+        {% endblock %}
+
+        {% block content %}
+
+            <header id="header_banner" class="profile_header">
+            </header>
+            <div id="content_container">
+                {% if msg == "missing" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-exclamation-circle"></span>
+                            We need your firstname, lastname and e-mail.
+                        </p>
+                    </div>
+                {% elseif msg == "imageExtension" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-times-circle"></span>
+                            Only .png, .jpg, .jpeg and .gif files are allowed.
+                        </p>
+                    </div>
+                {% elseif msg == "imageError" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-times-circle"></span>
+                            Hmm, it seems to be something wrong with image.
+                        </p>
+                    </div>
+                {% elseif msg == "imageSize" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-times-circle"></span>
+                            Allowed file size is 1MB.
+                        </p>
+                    </div>
+                {% elseif msg == "uploadProblem" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-times-circle"></span>
+                            Can't upload image.
+                        </p>
+                    </div>
+                {% elseif msg == "pathError" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-times-circle"></span>
+                            Unable update image path.
+                        </p>
+                    </div>
+
+                {% elseif msg == "wrongOldPassword" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-times-circle"></span>
+                            Wrong old password.
+                        </p>
+                    </div>
+                {% elseif msg == "passwordsNotSame" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-times-circle"></span>
+                            New passwords don't match.
+                        </p>
+                    </div>
+                {% elseif msg == "passwordNotValid" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-times-circle"></span>
+                            Password must contain min. 8 characters, min. 1 capital letter and min. 1 number.
+                        </p>
+                    </div>
+
+
+                {% elseif msg == "success" %}
+                    <div id="notifier" class="green shadow">
+                        <p>
+                            <span class="fa fa-check-circle"></span>
+                            Profile successfully updated.
+                        </p>
+                    </div>
+
+                {% elseif msg == "error" %}
+                    <div id="notifier" class="red shadow">
+                        <p>
+                            <span class="fa fa-times-circle"></span>
+                            An error occured.
+                        </p>
+                    </div>
+                {% elseif msg == "info" %}
+                    <div id="notifier" class="blue shadow">
+                        <p>
+                            <span class="fa fa-info-circle"></span>
+                            This is info, insert correct message here!
+                        </p>
+                    </div>
+                {% endif %}
+
+
+                {% if userData.image_path != "default.jpg" %}
+                    <form id="profile_fileRemover_form" action="profile.php" method="post">
+                        <div class="fileRemover btn btn-primary">
+                            <span class="fa fa-times"></span> <span> Remove Picture</span>
+                            <input type="submit" name="removeProfileImageBtn" id="imgRemover" class="remover" value="Remove Picture"/>
+                        </div>
+                    </form>
+                {% endif %}
+
+                <form id="profile_edit_form" action="profile.php" method="post" enctype="multipart/form-data">
+
+                    <div class="flex_parent clearfix">
+                        <div class="profile_image_displayer left">
+                            <h3>Profile Picture:</h3>
+                            <img src="src/ProjectWhisky/presentation/userimages/{{ userData.image_path }}" alt="Profile Picture of {{ userData.firstname }}"/>
+
+                            <div class="fileUpload btn btn-primary">
+                                <span class="fa fa-pencil"></span> <span> Change Picture</span>
+                                <input id="imgUploader" type="file" class="upload" name="userImage">
+                            </div>
+
+                            <input id="uploadFile" placeholder="No File Selected" disabled="disabled">
+
+                        </div>
+
+                        <div class="profile_edit_info left">
+                            <h3>First name:</h3>
+                            <input type="text" value="{{ userData.firstname }}" name="userFirstName" placeholder="Firstname"/>
+                            <h3>Last name:</h3>
+                            <input type="text" value="{{ userData.lastname }}" name="userLastName" placeholder="Lastname"/>
+                            <h3>E-mail:</h3>
+                            <input type="text" value="{{ userData.email }}" name="userEmail" placeholder="E-mail"/>
+                        </div>
+                    </div>
+
+                    <div class="change_password_box">
+                        <a class="dontChangePass btn btn-primary" href="#"><span class="fa fa-pencil"></span> <span> Close</span></a>
+                        <a class="changePass btn btn-primary" href="#"><span class="fa fa-pencil"></span> <span> Change Password</span></a>
+                        <div id="passwordBlock">
+                            <h3>Change Password:</h3>
+                            <input class="passClass" type="password" value="" name="userOldPassword" placeholder="Old password" disabled/>
+                            <input class="passClass" type="password" value="" name="userNewPassword" placeholder="New password" disabled/>
+                            <input class="passClass" type="password" value="" name="userNewPasswordRepeat" placeholder="Repeat password" disabled/>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="SAVE CHANGES"/>
+
+                </form>
+            </div>
+
+
+            <script>
+
+            </script>
+
+        {% endblock %}

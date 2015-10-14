@@ -1,0 +1,54 @@
+{% extends "cpanel_template.twig" %}
+{% set activetab = 'distilleries' %}
+{% block title %} Distilleries  {% endblock %}
+{% block content %}
+
+            <header id="header_banner" class="distillery_header">
+                <div id="header_quote"><p>Manage Distilleries</p></div>
+            </header>
+            <div id="content_container">
+                <div id="controller" class="shadow">
+
+                    <form class="cpanel_form cp_subform"><h2>Search Distillery</h2>
+
+                        <input type="text" name="search_distilleryname" value="{{searchInput is defined ? searchInput : ""}}" id="search_distilleryname" placeholder="Distillery Name">
+                        <input class="btn btn-primary" type="submit" value="Search">
+
+                    </form>
+
+                    <a class="btn btn-primary" href="CP_distillery_add.php"><i class="fa fa-plus"></i> Add a distillery</a>
+                    
+                    {% if searchInput is defined and not empty %}
+                    <br>
+                        <a href="CP_distillery.php" class="btn btn-primary">Show all</a>
+                    {% endif %}
+
+                    <table class="cpanel_table">
+
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Country</th>
+                            <th>Region</th>
+                            <th>Full Edit</th>
+                        </tr>
+
+                    {% for distillery in distilleries %}
+
+                        <tr> 
+                            <td>{{ distillery.name }}</td>
+                            <td>{{ distillery.address }}</td>
+                            <td>{{ distillery.city }}</td>
+                            <td>{{ distillery.country }}</td>
+                            <td>{{ distillery.region }}</td>
+                            <td class="text_center"><a href="CP_distillery_edit.php?id={{ distillery.id }}">Edit</a></td>
+                        
+
+                        </tr>
+
+                    {% endfor %}
+                    
+                </div>
+            </div>
+{% endblock %}    

@@ -1,0 +1,47 @@
+    {% extends "default_template.twig" %}
+        {% block title %}
+            Home
+        {% endblock %}
+
+        {% block content %}
+
+            <header id="header_banner">
+                <div id="header_quote"><p>“Whiskey, like a beautiful woman, demands appreciation.<br>You gaze first, then it's time to drink.”<br><br>- Haruki Murakami</p></div>
+            </header>
+            <div id="content_container">
+                <section class="whisky_view" id="recent_whisky">
+                    <h2>Latest Reviewed Whiskies</h2>
+                    <ul>
+                        {% for whisky in whiskies|reverse|slice(0, 4)  %}
+                        <li>
+                        	{% set ratingtotal = (whisky.ratingAroma + whisky.ratingColor + whisky.ratingTaste + whisky.ratingAftertaste) * 0.125 %}
+                            <div class="progress-radial progress-{{ (ratingtotal * 10) | round }}"> 
+                                <div class="overlay">{{ ratingtotal | round(2) }}</div>
+                            </div>
+                            <a class="whisky_box" href="whisky.php?id={{ whisky.id }}">
+                                <img src="src/ProjectWhisky/presentation/img/{{ whisky.imagePath }}" alt="{{ whisky.name }} Image">
+                                <div class="whisky_box_name">{{ whisky.name }}</div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+                <section class="whisky_view" id="top_whisky">
+                    <h2>All Whiskies</h2>
+                    <ul>
+                        {% for whisky in whiskies %}
+                        <li>
+                            {% set ratingtotal = (whisky.ratingAroma + whisky.ratingColor + whisky.ratingTaste + whisky.ratingAftertaste) * 0.125 %}
+                            <div class="progress-radial progress-{{ (ratingtotal * 10) | round }}"> 
+                                <div class="overlay">{{ ratingtotal | round(2) }}</div>
+                            </div>
+                            <a class="whisky_box" href="whisky.php?id={{ whisky.id }}">
+                                <img src="src/ProjectWhisky/presentation/img/{{ whisky.imagePath }}" alt="{{ whisky.name }} Image">
+                                <div class="whisky_box_name">{{ whisky.name }}</div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        {% endblock %}

@@ -1,0 +1,10 @@
+{% extends "default_template.twig" %}
+{% block content %}
+<select>
+  <option value="volvo">Volvo</option>
+  <option selected={{ 1 ? '"selected"' : '' }} value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+{% endblock %}

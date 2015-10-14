@@ -1,0 +1,76 @@
+    {% extends "default_template.twig" %}
+        {% block title %}
+            Search Whiskies
+        {% endblock %}
+
+
+        {% block content %}
+            <header id="header_banner" class="search_header">
+            </header>
+            <div id="content_container">
+                <section class="whisky_view" id="defined_whiskies">
+                    <h2>Search All Whiskies</h2>
+
+                    <form id="search_whisky_form" action="search.php" method="get">
+                        <div class="flex_parent clearfix">
+                            <div class="sliders_block left">
+                                <h3>Region:</h3>
+                                    <select id="selRegion" name="region">
+                                   		<option value="%">-- all regions --</option>
+        	                            {% for distillery in distilleries %}
+        		  							<option value="{{ distillery.region }}">{{ distillery.region }}</option>
+        		  						{% endfor %}
+        							</select>
+                            
+                                 <h3>Barrel:</h3>
+                                    <select id="selBarrel" name="barrel_id">
+                                    	<option value="%">-- any barrel --</option>
+        	                            {% for barrel in barrels %}
+        		  							<option value="{{ barrel.id }}">{{ barrel.type }}</option>
+        		  						{% endfor %}
+        							</select>
+                                
+                            </div>
+                            <div class="sliders_block left">
+                                <label>
+                                    <h4>Age:</h4>
+                                    <div id="age_range"></div>
+                                </label>
+
+                                <label>
+                                    <h4>Alcohol Percentage:</h4>
+                                    <div id="strength_range"></div>
+        						</label>
+
+                                <label>
+                                    <h4>Total Score:</h4>
+                                    <div id="score_range"></div>
+        						</label>
+                            </div>
+                        </div>
+						<input type="submit" value="Search" hidden>
+
+                    </form>
+
+                    <h2>Search results</h2>
+                    <div id="searchResultContent">
+                        <ul>
+                            {% for whisky in whiskies %}
+                            <li>
+                                {% set ratingtotal = (whisky.ratingAroma + whisky.ratingColor + whisky.ratingTaste + whisky.ratingAftertaste) * 0.125 %}
+                                <div class="progress-radial progress-{{ (ratingtotal * 10) | round }}">
+                                    <div class="overlay">{{ ratingtotal | round(2) }}</div>
+                                </div>
+                                <a class="whisky_box" href="whisky.php?id={{ whisky.id }}">
+                                    <img src="src/ProjectWhisky/presentation/img/{{ whisky.imagePath }}" alt="{{ whisky.name }} Image">
+                                    <div class="whisky_box_name">{{ whisky.name }}</div>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    </div>
+                </section>
+            </div>
+        {% endblock %}

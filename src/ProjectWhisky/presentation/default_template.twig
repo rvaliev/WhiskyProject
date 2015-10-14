@@ -1,0 +1,134 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Project Whisky - {% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="icon" href="src/ProjectWhisky/presentation/logo/logo_black_favicon.png">
+
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/normalize.css" type="text/css" >
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/default/style.css" type="text/css" >
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/default/popup.css" type="text/css" >
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/progress_style.css" type="text/css" >
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/iconfonts/css/font-awesome.min.css" type="text/css" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css" type="text/css" >
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/sliders/css/classic.css" type="text/css" >
+        
+        <script src="src/ProjectWhisky/presentation/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="lib/ckeditor/ckeditor.js"></script>
+
+        {# <script src="http://cdn.ckeditor.com/4.5.1/standard/ckeditor.js"></script> #}
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <nav id="navbar" class="fullwidth top">
+            <!-- Full top navigator -->
+            <div class="navbar_icons clearfix">
+                <ul class="right">
+                    <li class="navbutton fa fa-search left"><a href="search.php">Search</a></li>
+                    <li class="navbutton fa fa-globe left"><a href="index.php">Home</a></li>
+
+                    {# Show specific menu items to particular users #}
+                    {% if  user.role == 0  %}
+                        <li class="navbutton fa fa-sign-in left"><a class="show-login" href="#">Login</a></li>
+                        <li class="navbutton fa fa-user-plus left"><a class="show-register" href="#">Register</a></li>
+                        
+
+                    {% elseif  user.role == 1  %}
+                        
+                        <li class="navbutton fa fa-user left"><a href="profile.php">Profile</a></li>
+                        <li class="navbutton fa fa-sign-out left"><a href="logout.php?logout=true">Logout</a></li>
+                    {% elseif  user.role == 2  %}
+                        
+                        <li class="navbutton fa fa-cogs left"><a href="cp_user.php">Control Panel</a></li>
+                        <li class="navbutton fa fa-user left"><a href="profile.php">Profile</a></li>
+                        <li class="navbutton fa fa-sign-out left"><a href="logout.php?logout=true">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        
+        {# Registration pop-up #}
+        <div class="lightbox-panel-register">
+            <div class="modal">
+                <form name="register_form" id="register_form" method="post" action="registration.php">
+                <h3>Register</h3>
+                    <input class="name" type="text" name="firstname" placeholder="Firstname" spellcheck="false" required>
+                    <input class="name" type="text" name="lastname" placeholder="Lastname" spellcheck="false" required>
+                    <input class="email" type="text" name="email" placeholder="E-mail" spellcheck="false" required>
+                    <input class="username" type="text" name="username" placeholder="Username" spellcheck="false" required>
+                    <input class="password" type="password" name="password" placeholder="Password" required>
+                    <input class="passwordRepeat" type="password" name="rpassword" placeholder="Repeat password" required>
+                    <input class="registrationBtn" name="registrationBtn" type="submit" value="REGISTER" disabled>
+                    <div class="error_reporting_registration">
+                        <span>Verkeerde registratie</span>
+                    </div>
+                    <div class="close flex_parent">
+                        <a class="show-login btn btn-primary flex5" href="#">LOG IN</a>
+                        <a class="close-panel-register btn btn-primary flex5" href="#">CLOSE</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {# Log in pop-up #}
+        <div class="lightbox-panel-login">
+            <div class="modal">
+                <form name="loginform" id="login_form" action="authorization.php" method="post">
+                <h3>Log in</h3>
+                    <input class="email" type="text" name="emailField" placeholder="E-mail address" spellcheck="false" required>
+                    <input class="password" name="passField" type="password" placeholder="Password" required>
+                    <input class="submitBtn" name="loginBtn" type="submit" value="LOG IN" disabled>
+                    <div class="error_reporting">
+                        <span>Errors go here</span>
+                    </div>
+
+                    <div class="close flex_parent">
+                        <a class="show-register btn btn-primary flex5" href="#">REGISTER</a>
+                        <a class="close-panel-login btn btn-primary flex5" href="#">CLOSE</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container containershadow">
+            {% block content %}{% endblock %}
+        </div>
+
+        <footer class="bottom fullwidth clearfix">
+            <div class="left"><p>Whisky Project 2015</p></div>
+            <div class="right"><p>By Ruslan Antonio, Brent Antonio, Tom Antonio and Roger Antonio.</p></div>
+        </footer>
+
+
+
+        
+        <!-- Scripts below here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script>window.jQuery || document.write('<script src="src/ProjectWhisky/presentation/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+        <script src="src/ProjectWhisky/presentation/js/plugins.js"></script>
+        <script src="src/ProjectWhisky/presentation/js/is.js"></script>
+        <script src="src/ProjectWhisky/presentation/js/main.js"></script>
+        <script src="src/ProjectWhisky/presentation/js/search.js"></script>
+
+
+        <!-- Multi Sliders -->
+        <!-- <script src="src/ProjectWhisky/presentation/sliders/jquery.js"></script> -->
+        <!-- <script src="src/ProjectWhisky/presentation/sliders/jquery-ui.custom.js"></script> -->
+        <script src="src/ProjectWhisky/presentation/sliders/lib/jquery.mousewheel.min.js"></script>
+        <script src="src/ProjectWhisky/presentation/sliders/jQEditRangeSlider-min.js"></script>
+
+        
+
+        
+    </body>
+</html>

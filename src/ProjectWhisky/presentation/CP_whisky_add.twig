@@ -1,0 +1,172 @@
+{% extends "cpanel_template.twig" %}
+{% set activetab = 'whiskies' %}
+{% block title %} Add Whisky {% endblock %}
+{% block content %}
+
+    <header id="header_banner" class="whisky_header">
+        <div id="header_quote"><p>Add Whisky</p></div>
+    </header>
+        <div id="content_container">
+
+            {% if msg == "missing" %}
+                <div id="notifier" class="yellow shadow">
+                    <p><span class="fa fa-exclamation-circle"></span>
+                        All fields are required.</p>
+                </div>
+            {% elseif msg == "success" %}
+                <div id="notifier" class="green shadow">
+                    <p><span class="fa fa-check-circle"></span>
+                        Whisky successfully added.</p>
+                </div>
+            {% elseif msg == "image_missing" %}
+                <div id="notifier" class="red shadow">
+                    <p><span class="fa fa-times-circle"></span>
+                        You need to upload image.</p>
+                </div>
+            {% elseif msg == "error" %}
+                <div id="notifier" class="red shadow">
+                    <p><span class="fa fa-times-circle"></span>
+                        An error occured.</p>
+                </div>
+            {% elseif msg == "info" %}
+                <div id="notifier" class="blue shadow">
+                    <p><span class="fa fa-info-circle"></span>
+                        "This is info, insert correct message here!"</p>
+                </div>
+            {% endif %}
+
+
+            <div id="controller" class="shadow">
+                <form id="whiskyAddition" class="cp_subform" action="CP_whisky_add.php" method="post" enctype="multipart/form-data"
+                oninput="aroma_amount.value=rating_aroma.value,
+                        color_amount.value=rating_color.value,
+                        taste_amount.value=rating_taste.value,
+                        aftertaste_amount.value=rating_aftertaste.value">
+
+                    <div class="flex_parent">
+                        <div class="flex_child">
+                            <h3>Product Picture:</h3>
+                            
+                            <div class="fileUpload btn btn-primary">
+                                <span class="fa fa-plus"></span> <span> Upload Picture</span>
+                                <input id="imgUploader" type="file" class="upload" name="whisky_image">
+                                <input class="btn btn-primary" id="uploadFile" placeholder="No File Selected" disabled="disabled">
+                            </div>
+
+                            <h3>Name:</h3>
+                            <input type="text" id="whisky_name" name="whisky_name" value="{{ savedData.name }}">
+
+                            <h3>Distillery:</h3>
+                            <select id="distillery_id" name="distillery_id">
+                                {% if savedData.distillery == 0 %}
+                                    <option value="0" selected >Select distillery</option>
+                                {% else %}
+                                    <option value="0" >Select distillery</option>
+                                {% endif %}
+
+                                {% for distillery  in distilleries %}
+                                    {% if savedData.distillery == distillery.id %}
+                                        <option selected value="{{ savedData.distillery }}">{{ distillery.name }}</option>
+                                    {% else %}
+                                        <option value="{{ distillery.id }}">{{ distillery.name }}</option>
+                                    {% endif %}
+                                {% endfor  %}
+                            </select>
+
+                            <h3>Price:</h3>
+                            <input type="number"  min="0" id="whisky_price" name="whisky_price" value="{{ savedData.price }}"><span> &euro;</span>
+
+                            <h3>Age:</h3>
+                            <input type="number"  min="0" id="whisky_age" name="whisky_age" value="{{ savedData.age }}"><span> Years</span>
+
+                            <h3>Strength:</h3>
+                            <input type="number"  min="0" max="100" id="whisky_strength" name="whisky_strength" value="{{ savedData.strength }}"><span> &#37;</span>
+
+                            <h3>Barrel type:</h3>
+                            <select id="barrel" name="barrel">
+                                {% if savedData.barrel_id == 0 %}
+                                    <option value="0" selected >Select a barrel</option>
+                                {% else %}
+                                    <option value="0">Select a barrel</option>
+                                {% endif %}
+
+                                {% for barrel  in barrels %}
+                                    {% if savedData.barrel_id == barrel.id %}
+                                        <option selected value="{{ barrel.id }}">{{ barrel.type }}</option>
+                                    {% else %}
+                                        <option value="{{ barrel.id }}">{{ barrel.type }}</option>
+                                    {% endif %}
+
+                                {% endfor  %}
+                            </select>
+                        </div>
+                        <div class="flex_child">
+                            <h3>Rating Aroma:</h3>
+                            <input name="rating_aroma" id="rating_aroma" class="" type="range" min="0" max="10" step="0.5" list="slider-datalist">
+                            <output name="aroma_amount" for="rating_aroma">0</output>
+
+                            <h3>Rating Color:</h3>
+                            <input name="rating_color" id="rating_color" class="" type="range" min="0" max="10" step="0.5" list="slider-datalist">
+                            <output name="color_amount" for="rating_color">0</output>
+
+                            <h3>Rating Taste:</h3>
+                            <input name="rating_taste" id="rating_taste" class="" type="range" min="0" max="10" step="0.5" list="slider-datalist">
+                            <output name="taste_amount" for="rating_taste">0</output>
+
+                            <h3>Rating Aftertaste:</h3>
+                            <input name="rating_aftertaste" id="rating_aftertaste" class="" type="range" min="0" max="10" step="0.5" list="slider-datalist">
+                            <output name="aftertaste_amount" for="rating_aftertaste">0</output>
+                        </div>
+
+                        <datalist id="slider-datalist">
+                            <option label="Minimum">0</option> 
+                            <option>1</option> 
+                            <option>2</option> 
+                            <option>3</option> 
+                            <option>4</option> 
+                            <option label="midpoint">5</option> 
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option label="Maximum">10</option>
+                        </datalist>
+                        
+                    </div>
+                    <br><br>
+
+                    <h3>Review Aroma:</h3>
+                    <textarea id="text_aroma" name="text_aroma" rows="10" cols="80">{{ savedData.text_aroma }}</textarea>
+
+                    <h3>Review Color:</h3>
+                    <textarea id="text_color" name="text_color" rows="10" cols="80">{{ savedData.text_color }}</textarea>
+
+                    <h3>Review Taste:</h3>
+                    <textarea id="text_taste" name="text_taste" rows="10" cols="80">{{ savedData.text_taste }}</textarea>
+
+
+                    <h3>Review Aftertaste:</h3>
+                    <textarea id="text_aftertaste" name="text_aftertaste" rows="10" cols="80">{{ savedData.text_aftertaste }}</textarea>
+
+                    <h3>Overall review:</h3>
+                    <textarea id="text_review" name="text_review" rows="10" cols="80">{{ savedData.review }}</textarea>
+
+                    {#Load all editors#}
+                    <script>
+                        CKEDITOR.replace( 'text_aroma' );
+                        CKEDITOR.replace( 'text_color' );
+                        CKEDITOR.replace( 'text_taste' );
+                        CKEDITOR.replace( 'text_aftertaste' );
+                        CKEDITOR.replace( 'text_review' );
+                    </script><br>
+
+                    <input class="btn btn-primary" type="submit" value="Save" name="whiskySaveBtn">
+
+                </form>
+            </div>
+
+
+
+
+        </div>
+{% endblock %}    

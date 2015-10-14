@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Project Whisky - {% block title %}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="icon" href="src/ProjectWhisky/presentation/logo/logo_black_favicon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/normalize.css">
+        <!-- <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/default/style.css"> -->
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/admin/style.css">
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/default/popup.css">
+        
+        <link rel="stylesheet" href="src/ProjectWhisky/presentation/css/iconfonts/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.css">
+        
+        <script src="src/ProjectWhisky/presentation/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="lib/ckeditor/ckeditor.js"></script>
+        
+        {# <script src="http://cdn.ckeditor.com/4.5.1/standard/ckeditor.js"></script> #}
+    </head>
+    
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <nav id="navbar" class="fullwidth top">
+            <!-- Full top navigator -->
+            <div class="navbar_icons clearfix">
+                <ul class="right">
+                    <li class="navbutton fa fa-search left"><a href="search.php">Search</a></li>
+                    <li class="navbutton fa fa-globe left"><a href="index.php">Website</a></li>
+
+                    {# Show specific menu items to particular users #}
+                    {% if user.role == 0 %}
+
+                        <li class="navbutton fa fa-sign-in left"><a class="show-login" href="#">Login</a></li>
+                        <li class="navbutton fa fa-user-plus left"><a class="show-register" href="#">Register</a></li>
+                        
+                    {% elseif user.role == 1 %}
+                        
+                        <li class="navbutton fa fa-user left"><a href="profile.php">Profile</a></li>
+                        <li class="navbutton fa fa-sign-out left"><a href="logout.php?logout=true">Logout</a></li>
+
+                    {% elseif user.role == 2 %}
+                        
+                        <li class="navbutton fa fa-cogs left"><a href="cp_user.php">Control Panel</a></li>
+                        <li class="navbutton fa fa-user left"><a href="profile.php">Profile</a></li>
+                        <li class="navbutton fa fa-sign-out left"><a href="logout.php?logout=true">Logout</a></li>
+
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div id="cp_container" class="container">
+            <aside id="sidebar" class="left">
+                <!-- Navigational Sidebar -->
+                <ul id="menu">
+                    <li>
+                        <a class="{{ activetab == 'users' ? "active" : "" }}" href="cp_user.php"><span class="fa fa-users"> </span> Users</a>
+                    </li>
+                    <li>
+                        <a class="{{ activetab == 'whiskies' ? "active" : "" }}" href="cp_whisky.php"><span class="fa fa-glass"> </span> Whiskies</a>
+                    </li>
+                    <li>
+                        <a class="{{ activetab == 'distilleries' ? "active" : "" }}" href="cp_distillery.php"><span class="fa fa-truck"> </span> Distilleries</a>
+                    </li>
+                    <li>
+                        <a class="{{ activetab == 'barrels' ? "active" : "" }}" href="cp_barrel.php"><span class="fa fa-life-ring"> </span> Barrels</a>
+                    </li>
+                </ul>
+                <p class="copyrights right">whiskey.be &copy; 2015
+                <br>Design by Roger Antonio Vandekerckhove.
+                <br>Back-End by Ruslan Valiev.
+                <br>Back-End by Tom Vanderheijden.
+                <br>Back-End by Brent Keersmaekers.</p>
+            </aside>
+            <div id="content">
+
+        {% block content %}{% endblock %}
+
+            </div>
+        </div>
+        
+        <!-- Scripts below here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script>window.jQuery || document.write('<script src="src/ProjectWhisky/presentation/js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+        <script src="src/ProjectWhisky/presentation/js/plugins.js"></script>
+        <script src="src/ProjectWhisky/presentation/js/main.js"></script>
+
+
+    </body>
+</html>

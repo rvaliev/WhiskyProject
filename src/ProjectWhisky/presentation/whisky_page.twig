@@ -1,0 +1,183 @@
+    {% extends "default_template.twig" %}
+        {% block title %}
+            {{ whisky.name }}
+        {% endblock %}
+
+        {% block content %}
+        
+            <header id="header_banner" class="whisky_header">
+            </header>
+            <div id="whisky_page">
+                <div id="content_container" class="clearfix flex_parent">
+                    <aside id="whisky_sidebar" class="left">
+                        <div class="whisky_image_container center">
+                            <img src="src/ProjectWhisky/presentation/img/{{ whisky.imagePath }}" alt="{{ whisky.name }} Image">
+                        </div>
+                        <div id="information">
+                            <div>
+                                <h3>Distillery:</h3>
+                                <p><a href="distillery.php?id={{ whisky.distilleryId }}">{{ distilleryName }}</a></p>
+                            </div>
+                            <div>
+                                <h3>Age:</h3>
+                                <p>{{ whisky.age }} Years</p>
+                            </div>
+                            <div>
+                                <h3>Alcohol Percentage:</h3>
+                                <p>{{ whisky.strength }}%</p>
+                            </div>
+                            <div>
+                                <h3>Barrel type:</h3>
+                                <p>{{ barrel }}</p>
+                            </div>
+                            <div>
+                                <h3>Region:</h3>
+                                <p>{{ region }}</p>
+                            </div>
+                            <div>
+                                <h3>Estimated Price:</h3>
+                                <p>&euro; {{ whisky.price | number_format(2) }}</p>
+                            </div>
+                        </div>
+                    </aside>
+                    {% set ratingtotal = (whisky.ratingAroma + whisky.ratingColor + whisky.ratingTaste + whisky.ratingAftertaste) * 0.125 %}
+                    <div id="whisky_total" class="progress-radial progress-{{ (ratingtotal * 10) | round }}"> 
+                        <div class="overlay">{{ ratingtotal | round(2, 'floor') }} / 10</div>
+                    </div>
+                    <div class="rating_box">
+                        <h2>{{ whisky.name }}</h2>
+                        <div id="bars">
+                            <!--bar-->
+                            <div class="clearfix">
+                                <span class="left">Aroma</span>
+                                <span class="right">{{ whisky.ratingAroma * 0.5 }} / 10</span>
+                            </div>
+                            <div class="rating_base"></div>
+                            <div class="rating" style="width: {{ whisky.ratingAroma * 5 }}%;"></div>
+
+                            <!--bar-->
+                            <div class="clearfix">
+                                <span class="left">Color</span>
+                                <span class="right">{{ whisky.ratingColor * 0.5 }} / 10</span>
+                            </div>
+                            <div class="rating_base"></div>
+                            <div class="rating" style="width: {{ whisky.ratingColor * 5 }}%;"></div>
+
+                            <!--bar-->
+                            <div class="clearfix">
+                                <span class="left">Taste</span>
+                                <span class="right">{{ whisky.ratingTaste * 0.5 }} / 10</span>
+                            </div>
+                            <div class="rating_base"></div>
+                            <div class="rating" style="width: {{ whisky.ratingTaste * 5 }}%;"></div>
+
+                            <!--bar-->
+                            <div class="clearfix">
+                                <span class="left">Aftertaste</span>
+                                <span class="right">{{ whisky.ratingAftertaste * 0.5 }} / 10</span>
+                            </div>
+                            <div class="rating_base"></div>
+                            <div class="rating" style="width: {{ whisky.ratingAftertaste * 5 }}%;"></div>
+                        </div>
+                    </div>
+                    <div id="contentbox">
+                        <div id="review">
+                            <h2 id="description_header">Detailed description:</h2>
+                            <div class="review_box">
+                                <h3>Aroma</h3>
+                                <p>{{ whisky.textAroma|raw }}</p>
+                            </div>
+                            <div class="review_box">
+                                <h3>Color</h3>
+                                <p>{{ whisky.textColor|raw }}</p>
+                            </div>
+                            <div class="review_box">
+                                <h3>Taste</h3>
+                                <p>{{ whisky.textTaste|raw }}</p>
+                            </div>
+                            <div class="review_box">
+                                <h3>Aftertaste</h3>
+                                <p>{{ whisky.textAftertaste|raw }}</p>
+                            </div>
+                            <h2 id="review_header">Review:</h2>
+                            <div class="review_box">
+                                <p>{{ whisky.review|raw }}</p>
+                            </div>
+                        </div>
+                        <div id="comments">
+                            <h2 id="message" id="description_header">Comments:</h2>
+
+                            {#Editor#}
+                            {%  if user.role == 1 or user.role == 2 %}
+
+                                    <form method="post" action="whisky.php?id={{ whisky.id }}" name="commentsForm">
+							            <textarea name="editor1" id="editor1" rows="10" cols="80"></textarea>
+							            <script>
+							                // Replace the <textarea id="editor1"> with a CKEditor
+							                // instance, using default configuration.
+							                CKEDITOR.replace( 'editor1' );
+							            </script>
+                                        <div class="flex_parent">
+                                            <div class="flex_child flex5">
+                                                <div class="messageBlock {{ messageColor }}">{{ messageBlock }}</div>
+                                            </div>
+                                            <div class="flex_child right">
+                                                <div id="comment_submit">
+                                                    <input type="submit" class="btn btn-primary" value="Post Comment" name="sendMsgBtn"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+       								 </form>
+                            {% else %}
+                                <div class="editorReplacement blue">
+                                    <span class="fa fa-info-circle"></span> Please, <a href="#" class="show-login">log in</a> or <a href="#" class="show-register">register</a> to leave a comment.
+                                </div>
+                            {% endif %}
+
+
+
+                            {% for comment in participatedUsers %}
+                                <div class="comment flex_parent clearfix">
+
+                                    <div class="profile_pic comment_pic left">
+                                        <img alt="profile picture of {{ comment.username }}" src="src/ProjectWhisky/presentation/userimages/{{ comment.imagePath }}">
+                                    </div>
+                                    <div class="user_comment left">
+                                        <h3>{{ comment.username }} says:</h3>
+                                        <p>{{ comment.comment|raw }}</p>
+                                    </div>
+
+                                    <div class="comment_timestamp clearfix">
+                                        {% if user.role == 1 or user.role == 2 %}
+                                            {% if user.id == comment.userId or user.role == 2 %}
+                                                <div class="comment_controls">
+                                                    {# <a href="" alt="Edit comment"><div class="fa fa-pencil"></div> Edit</a> #}
+
+                                                    <form name="deleteCommentForm" action="whisky.php?id={{ whisky.id }}" method="post">
+
+                                                        <input type="hidden" name="commentId" value="{{ comment.commentId }}"/>
+
+                                                        <div class="commentRemover btn btn-primary no_bg no_padding">
+                                                            <span class="fa fa-trash"></span> <span> Remove</span>
+                                                            <input type="submit"  id="commentRemover" class="remover" value="" name="deleteCommentBtn"/>
+                                                        </div>
+                                                    </form>
+
+                                                  {#  {% if user.role == 2 %}
+                                                        <a href="" alt="Ban {{ comment.username }}"><div class="fa fa-ban"></div> Block user</a>
+                                                    {% endif %} #}
+                                                    {# <a href="" alt="Reply"><div class="fa fa-reply"></div> Reply</a> #}
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                        <p class="right"><span class="fa fa-comment"></span> Posted on {{comment.commentDate}} at {{comment.commentTime}}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}

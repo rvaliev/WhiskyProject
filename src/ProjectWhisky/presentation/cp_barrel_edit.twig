@@ -1,0 +1,20 @@
+{% extends "cpanel_template.twig" %}
+{% set activetab = 'barrels' %}
+{% block title %} Edit Barrel  {% endblock %}
+{% block content %}
+
+            <header id="header_banner" class="barrels_header">
+                <div id="header_quote"><p>Edit Barrel</p></div>
+            </header>
+            <div id="content_container">
+                <div id="controller" class="shadow">
+                    <form class="cp_subform" action="cp_barrel_edit.php?id={{ barrel.id }}" method="post">
+                   
+                        <h3>Barrel:</h3>
+                        <input type="text" value="{{ barrel.type }}" id="type" name="type"><br><br>
+
+                        <input class="btn btn-primary" type="submit" value="Save changes">
+                    </form>
+                </div>
+            </div>
+{% endblock %} 

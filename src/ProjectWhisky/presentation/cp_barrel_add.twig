@@ -1,0 +1,21 @@
+{% extends "cpanel_template.twig" %}
+{% set activetab = 'barrels' %}
+{% block title %} Add Barrel  {% endblock %}
+{% block content %}
+
+            <header id="header_banner" class="barrels_header">
+                <div id="header_quote"><p>Add Barrel</p></div>
+            </header>
+            <div id="content_container">
+                <div id="controller" class="shadow">
+                    <form class="cp_subform" action="cp_barrel_add.php" method="post">
+                       
+                        <h3>Barrel: </h3>
+                        <input type="text" id="type" name="type">
+                        <br>
+                        <br>
+                        <input class="btn btn-primary" type="submit" value="Add barrel">
+                    </form>
+                </div>
+            </div>
+{% endblock %}

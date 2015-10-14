@@ -1,0 +1,68 @@
+{% extends "cpanel_template.twig" %}
+{% set activetab = 'users' %}
+{% block title %} Users  {% endblock %}
+{% block content %}
+
+            <header id="header_banner" class="users_header">
+                <div id="header_quote"><p>Manage Users</p></div>
+            </header>
+            <div id="content_container">
+                <div id="controller" class="shadow">
+                
+                    <form class="cpanel_form cp_subform"><h2>Search Users</h2>
+
+                        <input type="text" name="search_username" id="search_username" value="{{searchInputUsername is defined ? searchInputUsername : ""}}" placeholder="Username">
+                        {# <input type="text" name="search_email" id="search_email" placeholder="Email"> #}
+                        <input class="btn btn-primary" type="submit" value="Search">
+
+                    </form>
+                    
+                    <a class="btn btn-primary" href="cp_user_add.php"><i class="fa fa-plus"></i> Add a User</a>
+                    
+                    {% if searchInputUsername is defined and not empty %}
+                        <a href="CP_user.php" class="btn btn-primary">Show all</a>
+                    {% endif %}
+
+                    <table class="cpanel_table">
+
+                        <tr>
+                            <th>Avatar</th>
+                            <th>Username</th>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Blocked</th>
+                            <th>Role</th>
+                            <th>Full Edit</th>
+                        </tr>
+
+                    {% for user in users %}
+
+                        <tr>
+                            <td class="text_center"><img alt="profile picture of {{ user.username }}" src="src/ProjectWhisky/presentation/userimages/{{ user.imagePath }}"></td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.email }}</td>
+
+                            {% if user.blocked == 1 %}
+                                <td class="text_center red no_border">true
+                            {% else %}
+                                <td class="text_center">false
+                            {% endif %}</td>
+
+                            {% if user.admin == 1 %}
+                                <td class="text_center green no_border">Admin
+                            {% else %}
+                                <td class="text_center">User
+                            {% endif %}</td>
+
+                            <td class="text_center"><a href="CP_user_edit.php?id={{ user.id }}">Edit</a></td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+{% endblock %} 

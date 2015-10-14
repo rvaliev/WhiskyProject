@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Admin Panel</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/admin/style.css">
+        <link rel="stylesheet" href="css/iconfonts/css/font-awesome.min.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <nav id="navbar" class="fullwidth top">
+            <!-- Full top navigator -->
+            <div class="navbar_icons clearfix">
+                <ul class="right">
+                    <li class="navbutton fa fa-search left"><a href="">Search</a></li>
+                    <li class="navbutton fa fa-cogs left"><a href="cpanel_index.html">Control Panel</a></li>
+                    <li class="navbutton fa fa-globe left"><a href="homepage.html">Website</a></li>
+                    <li class="navbutton fa fa-user left"><a href="">Profile</a></li>
+                    <li class="navbutton fa fa-sign-out left"><a href="">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <aside id="sidebar" class="left">
+                <!-- Navigational Sidebar -->
+                <ul id="menu">
+                    <li>
+                        <a class="fa fa-users active" href="users.php">Users</a>
+                    </li>
+                    <li>
+                        <a class="fa fa-glass" href="whiskies.php">Whiskies</a>
+                    </li>
+                    <li>
+                        <a class="fa fa-truck" href="distilleries.php">Distilleries</a>
+                    </li>
+                    <li>
+                        <a class="fa fa-life-ring" href="barrels.php">Barrels</a>
+                    </li>
+                </ul>
+                <p class="copyrights right">whiskey.be &copy; 2015<br>Design by Roger Antonio Vandekerckhove.</p>
+            </aside>
+            <div id="content">
+                <header>
+                    <!-- Page Title goes in here -->
+                    <h1>Users</h1>
+                </header>
+                <div id="notifier" class="green shadow">
+                    <!-- Use this to notify the user of any warning, errors or success messages -->
+                    
+                    <p><span class="fa fa-check-circle"></span>
+                    User successfully added.</p>
+                    
+                </div>
+                <div id="controller" class="shadow">
+                    <!-- Display all options and/or requested data here -->
+                    <form action="addUser.php" method="post">
+                        <div class="range-slider">
+                            <input class="input-range" type="range" value="0" min="0" max="500">
+                            <input type="text" class="range-value" value="" placeholder="0"><!-- </span> -->
+                        </div> 
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Scripts below here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <!-- Script for form Ranges -->
+        <script>
+            var range = $('.input-range'),
+                value = $('.range-value');
+                
+            value.html(range.attr('value'));
+
+            range.on('input', function(){
+                value.html(this.value);
+            });
+        </script>
+    </body>
+</html>
